@@ -3,9 +3,7 @@ import hudson.*
 import hudson.model.*
 import groovy.json.JsonOutput
 
-properties([[$class: 'DatadogJobProperty', tagFile: '', tagProperties: ''],
-buildDiscarder(logRotator(artifactDaysToKeepStr: '15', artifactNumToKeepStr: '5', daysToKeepStr: '15', numToKeepStr: '5')),
-disableConcurrentBuilds()])
+properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '15', artifactNumToKeepStr: '5', daysToKeepStr: '15', numToKeepStr: '5')), disableConcurrentBuilds()])
 
 node ('master') {
     // Clean workspace before doing anything
