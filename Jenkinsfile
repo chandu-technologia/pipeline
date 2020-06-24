@@ -5,7 +5,7 @@ import groovy.json.JsonOutput
 
 properties([[$class: 'DatadogJobProperty', tagFile: '', tagProperties: ''],
 buildDiscarder(logRotator(artifactDaysToKeepStr: '15', artifactNumToKeepStr: '5', daysToKeepStr: '15', numToKeepStr: '5')),
-disableConcurrentBuilds()
+disableConcurrentBuilds(),
 
 node () {
     // Clean workspace before doing anything
@@ -37,7 +37,7 @@ node () {
        
         stage('Push version Back to Git (tag)') {
         
-            git branch: "${BRANCH_NAME}", credentialsId: 'jenkins-user-key'
+            git branch: "${BRANCH_NAME}", credentialsId: 'githubkey'
             sh('git tag -a "${BRANCH_NAME}_1.0.${BUILD_NUMBER}.0" -m "${BRANCH_NAME} Build Version #1.0.${BUILD_NUMBER}.0" ')
             sh('git push origin --tags')
 
@@ -55,7 +55,6 @@ node () {
     }
     finally {
     // Success or failure, always send notifications
-    notifyBuild(currentBuild.result)
     cleanWs()
 
     }
