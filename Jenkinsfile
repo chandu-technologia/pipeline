@@ -7,7 +7,7 @@ properties([[$class: 'DatadogJobProperty', tagFile: '', tagProperties: ''],
 buildDiscarder(logRotator(artifactDaysToKeepStr: '15', artifactNumToKeepStr: '5', daysToKeepStr: '15', numToKeepStr: '5')),
 disableConcurrentBuilds()
 
-node {
+node () {
     // Clean workspace before doing anything
     deleteDir()
 
