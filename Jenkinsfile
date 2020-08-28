@@ -12,13 +12,13 @@ node ('master') {
     try {
         notifyBuild('STARTED')
         String jdktool = tool name: "java_home", type: 'hudson.model.JDK'
-        def mvnHome = tool name: 'maven3'
-        def MAVEN_SETTINGS = "/usr/local/src/apache-maven/conf/settings.xml"
+        def mvnHome = tool name: 'maven-3.6.3'
+     //   def MAVEN_SETTINGS = "/usr/local/src/apache-maven/conf/settings.xml"
         
         List javaEnv = [
                        "PATH+MVN=${jdktool}/bin:${mvnHome}/bin",
                        "M2_HOME=${mvnHome}",
-                       "JAVA_HOME=${jdktool}"]
+                      // "JAVA_HOME=${jdktool}"]
         withEnv(javaEnv) {
 
         stage ('Clone') {
